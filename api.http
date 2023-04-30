@@ -1,0 +1,35 @@
+##################
+###   Player   ###
+##################
+
+### Criar Player ###
+POST http://localhost:3000/api/players
+Content-Type: application/json
+
+{
+    "name": "Celso4 Doe",
+    "is_active": false
+}
+
+### Alterar Player ###
+@playerId = 509dcffe-3835-40d9-887d-c7b9f25799ee
+
+PUT http://localhost:3000/api/players/{{playerId}}
+Content-Type: application/json
+
+{
+    "name": "Maery Doe",
+    "is_active": "false"
+}
+
+### Obter Player ###
+GET http://localhost:3000/api/players/{{playerId}}
+
+### Delete Player ###
+DELETE http://localhost:3000/api/players/{{playerId}}
+
+### Buscar por name e is_active ###
+GET http://localhost:3000/api/players?filter[name]=e&filter[is_active]=false&page=1&per_page=15
+
+### Obter uma lista ###
+GET http://localhost:3000/api/players

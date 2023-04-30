@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    container_name: sumula-app
+    command: .docker/start.sh
+    volumes:
+      - .:/home/node/app
+    ports:
+      - 3000:3000
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+
+  db:
+    image: postgres:13
+    restart: always
+    container_name: sumula-app-db
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: dev
+
+  db_test:
+    image: postgres:13
+    restart: always
+    container_name: sumula-app-db-test
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: test
+
+  adminer:
+    image: adminer
+    restart: always
+    container_name: sumula-app-adminer
+    ports:
+      - 8080:8080
